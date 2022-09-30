@@ -1,0 +1,10 @@
+.table-content{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    display: flex;
+}
+
+.h5{
+    margin: 5rem 10rem 5rem 5rem;
+}
