@@ -1,24 +1,37 @@
 import React from 'react'
-import "./Customers.css"
 
-const Customers = ({
-    customerId,
-    firstName,
-    lastName,
-    orderID,
-    amount,
-    date
-}) => {
+const Table = ({ customer }) => {
     return (
-        <div className='table-content'>
-            <h5>{customerId}</h5>
-            <h5>{firstName}</h5>
-            <h5>{lastName}</h5>
-            <h5>{orderID}</h5>
-            <h5>{amount}</h5>
-            <h5>{date}</h5>
-        </div>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Customer Id</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Orders Datails</th>
+                </tr>
+                {customer?.map((item) => (
+                <tr key={item._id}>
+                    <td>{item.customerId}</td>
+                    <td>{item.firstName}</td>
+                    <td>{item.lastName}</td>
+                    <tr>
+                        <th>OrderId</th>
+                        <th>amount</th>
+                        <th>date</th>
+                    </tr>
+                    {item?.orders?.map((data) => (
+                        <tr key={data._id}>
+                            <td>{data.orderID}</td>
+                            <td>{data.amount}</td>
+                            <td>{data.date}</td>
+                        </tr>
+                    ))}
+                </tr>
+                ))}
+            </tbody>
+        </table>
     )
 }
 
-export default Customers
+export default Table
