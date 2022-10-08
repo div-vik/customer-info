@@ -86,13 +86,15 @@ mongoose.connect(
         }
         // await Customers.insertMany([customer1, customer2, customer3])
 })
-.catch((err)=> console.log(`no connection`));
+.catch((err)=> console.log(err));
 
 
 app.get("/customers-info", (req, res)=> {
-    Customers.find({})
-    .then((items) => res.send(items))
-    .catch((err) => console.log(err))
+    Customers.find({}, (error, customer) =>{
+        if(error) throw error
+        console.log(customer);
+        res.json(customer);
+    })
 });
 
 app.listen(process.env.PORT, () => {
